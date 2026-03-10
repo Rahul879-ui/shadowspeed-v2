@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ShadowSpeed</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+<div id="particles-js"></div>
+<!-- LOADER -->
+<div id="loader">
+ShadowSpeed
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+
+<button onclick="toggleMode()" id="modeBtn">🌙 Dark Mode</button>
+
+<div class="logo">ShadowSpeed</div>
+<div class="fav-counter">
+❤️ Favorites: <span id="favCount">0</span>
+</div>
+
+<ul class="nav-links">
+<li><a href="#">Home</a></li>
+<li><a href="#cars">Cars</a></li>
+<li><a href="#">About</a></li>
+<li><a href="#">Contact</a></li>
+</ul>
+
+</nav>
+
+<!-- HEADER -->
+
+<header>
+<h1>ShadowSpeed 🚗</h1>
+<p>Feel The Power. Drive The Future.</p>
+</header>
+
+<!-- HERO SECTION -->
+
+<section class="hero">
+
+<img id="heroImage" src="images/car1.jpg">
+
+<div class="hero-buttons">
+<button onclick="prevHero()">⬅</button>
+<button onclick="nextHero()">➡</button>
+</div>
+
+<div class="hero-content">
+<h2>Unleash The Beast</h2>
+<p>Experience Speed Like Never Before</p>
+<button onclick="document.getElementById('cars').scrollIntoView({behavior:'smooth'})">
+Explore Cars
+</button>
+</div>
+
+</section>
+
+<!-- CARS SECTION -->
+
+<section class="cars" id="cars">
+
+<div class="top-bar">
+<h2>Featured Cars</h2>
+
+<input type="text" id="searchBox" placeholder="Search car..." onkeyup="searchCar()">
+
+</div>
+
+<div class="car-container">
+
+<!-- LAMBORGHINI -->
+
+<div class="car-card">
+
+<img src="images/car2.jpg" width="250" onclick="openImage(this.src)">
+
+<h3>Lamborghini</h3>
+
+<p>Top Speed: 350 km/h</p>
+
+<button onclick="showDetails('Lamborghini')">View Details</button>
+
+<button onclick="addFavorite('Lamborghini')">❤️ Favorite</button>
+
+</div>
+
+<!-- FERRARI -->
+
+<div class="car-card">
+
+<img src="images/car1.jpg" width="250" onclick="openImage(this.src)">
+
+<h3>Ferrari</h3>
+
+<p>Top Speed: 340 km/h</p>
+
+<button onclick="showDetails('Ferrari')">View Details</button>
+
+<button onclick="addFavorite('Ferrari')">❤️ Favorite</button>
+
+</div>
+
+<!-- BUGATTI -->
+
+<div class="car-card">
+
+<img src="images/car3.jpg" width="250" onclick="openImage(this.src)">
+
+<h3>Bugatti</h3>
+
+<p>Top Speed: 420 km/h</p>
+
+<button onclick="showDetails('Bugatti')">View Details</button>
+
+<button onclick="addFavorite('Bugatti')">❤️ Favorite</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- CAR COMPARISON -->
+
+<section class="compare">
+
+<h2>⚡ Compare Supercars</h2>
+
+<select id="car1">
+<option value="Ferrari">Ferrari</option>
+<option value="Lamborghini">Lamborghini</option>
+<option value="Bugatti">Bugatti</option>
+</select>
+
+<select id="car2">
+<option value="Ferrari">Ferrari</option>
+<option value="Lamborghini">Lamborghini</option>
+<option value="Bugatti">Bugatti</option>
+</select>
+
+<br><br>
+
+<button onclick="compareCars()">Compare</button>
+
+<div id="compareResult"></div>
+
+</section>
+
+<!-- FAVORITES -->
+ <section class="gallery">
+
+<h2>🏎 Supercar Gallery</h2>
+
+<div class="gallery-container">
+
+<button class="gallery-btn left" onclick="prevGallery()">⬅</button>
+
+<div class="gallery-track" id="galleryTrack">
+
+<img src="images/car1.jpg">
+<img src="images/car2.jpg">
+<img src="images/car3.jpg">
+
+</div>
+
+<button class="gallery-btn right" onclick="nextGallery()">➡</button>
+
+</div>
+
+</section>
+
+<section class="favorites">
+
+<h2>❤️ Your Favorite Cars</h2>
+
+<ul id="favoriteList"></ul>
+
+</section>
+
+<!-- MODAL -->
+
+<div id="carModal" class="modal">
+
+<div class="modal-content">
+
+<span class="close-btn" onclick="closeModal()">&times;</span>
+
+<h2 id="modalTitle"></h2>
+
+<p id="modalText"></p>
+
+<img id="modalImage" width="300">
+
+<br><br>
+
+<button onclick="prevCar()">⬅ Previous</button>
+
+<button onclick="nextCar()">Next ➡</button>
+
+</div>
+
+</div>
+
+<!-- IMAGE VIEWER -->
+
+<div id="imageViewer" onclick="closeImage()">
+<img id="fullImage">
+</div>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+<h2>ShadowSpeed</h2>
+
+<p>Experience the fastest supercars in the world.</p>
+
+<div class="footer-links">
+
+<a href="#">Home</a>
+
+<a href="#cars">Cars</a>
+
+<a href="#">Contact</a>
+
+</div>
+
+<p class="copyright">
+© 2026 ShadowSpeed. All Rights Reserved.
+</p>
+
+</footer>
+<div id="toast">Added to Favorites ❤️</div>
+<script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+</body>
+</html>
