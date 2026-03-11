@@ -572,4 +572,28 @@ margin:0;
 
 .stat p{
 margin-top:10px;
+
+}
+/* Mobile Responsive Fix */
+
+@media (max-width: 768px) {
+
+.hero {
+    width: 100%;
+    padding: 20px;
+}
+
+.hero img {
+    width: 100%;
+    height: auto;
+}
+
+.hero-content {
+    text-align: center;
+}
+
+.explore-btn {
+    width: 100%;
+}
+
 }
