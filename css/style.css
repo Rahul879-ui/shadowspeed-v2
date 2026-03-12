@@ -785,4 +785,21 @@ max-width:100%;
 height:auto;
 display:block;
 }
+/* RATING SYSTEM */
 
+.rating{
+margin:10px 0;
+font-size:22px;
+cursor:pointer;
+}
+
+.rating span{
+opacity:0.4;
+transition:0.3s;
+}
+
+.rating span.active{
+opacity:1;
+color:gold;
+transform:scale(1.2);
+}
