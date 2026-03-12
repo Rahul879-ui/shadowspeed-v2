@@ -1,12 +1,23 @@
+/* ================= GLOBAL ================= */
 
-/* GLOBAL */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
 body{
-margin:0;
 font-family:Arial, sans-serif;
 background:black;
 color:white;
 text-align:center;
+overflow-x:hidden;
+}
+
+img{
+max-width:100%;
+height:auto;
+display:block;
 }
 
 button{
@@ -25,9 +36,8 @@ color:red;
 transform:scale(1.05);
 }
 
-/* ===================== */
-/* NAVBAR */
-/* ===================== */
+
+/* ================= NAVBAR ================= */
 
 .navbar{
 display:flex;
@@ -64,18 +74,16 @@ transition:0.3s;
 color:red;
 }
 
-/* ===================== */
-/* HEADER */
-/* ===================== */
+
+/* ================= HEADER ================= */
 
 header{
 padding:40px;
 background:linear-gradient(to right, black, darkred);
 }
 
-/* ===================== */
-/* HERO */
-/* ===================== */
+
+/* ================= HERO ================= */
 
 .hero{
 display:flex;
@@ -94,24 +102,13 @@ border-radius:12px;
 box-shadow:0 15px 40px rgba(0,0,0,0.7);
 }
 
-.hero-content h2{
-font-size:48px;
-margin-bottom:15px;
-}
-
 .hero-content{
 animation:fadeSlide 1.5s ease;
 }
 
-@keyframes fadeSlide{
-from{
-opacity:0;
-transform:translateY(-40px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
+.hero-content h2{
+font-size:48px;
+margin-bottom:15px;
 }
 
 .hero-buttons{
@@ -126,9 +123,19 @@ margin:5px;
 font-size:20px;
 }
 
-/* ===================== */
-/* CARS SECTION */
-/* ===================== */
+@keyframes fadeSlide{
+from{
+opacity:0;
+transform:translateY(-40px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+
+/* ================= CARS ================= */
 
 .cars{
 padding:40px;
@@ -152,10 +159,6 @@ outline:none;
 width:220px;
 }
 
-/* ===================== */
-/* CAR CONTAINER */
-/* ===================== */
-
 .car-container{
 display:flex;
 justify-content:center;
@@ -163,9 +166,8 @@ gap:25px;
 flex-wrap:wrap;
 }
 
-/* ===================== */
-/* CAR CARD */
-/* ===================== */
+
+/* ================= CAR CARD ================= */
 
 .car-card{
 background:#111;
@@ -188,7 +190,6 @@ box-shadow:0 15px 35px rgba(255,0,0,0.6);
 }
 
 .car-card img{
-width:100%;
 border-radius:10px;
 transition:0.4s;
 }
@@ -202,9 +203,8 @@ margin-top:10px;
 background:linear-gradient(45deg,#ff416c,#ff4b2b);
 }
 
-/* ===================== */
-/* MODAL */
-/* ===================== */
+
+/* ================= MODAL ================= */
 
 .modal{
 display:none;
@@ -229,17 +229,6 @@ text-align:center;
 animation:popup 0.4s ease;
 }
 
-@keyframes popup{
-from{
-transform:scale(0.7);
-opacity:0;
-}
-to{
-transform:scale(1);
-opacity:1;
-}
-}
-
 .close-btn{
 float:right;
 font-size:25px;
@@ -256,7 +245,19 @@ transition:0.3s;
 transform:scale(1.1);
 }
 
-/* IMAGE VIEWER */
+@keyframes popup{
+from{
+transform:scale(0.7);
+opacity:0;
+}
+to{
+transform:scale(1);
+opacity:1;
+}
+}
+
+
+/* ================= IMAGE VIEWER ================= */
 
 #imageViewer{
 position:fixed;
@@ -275,7 +276,8 @@ max-width:80%;
 max-height:80%;
 }
 
-/* FAVORITES */
+
+/* ================= FAVORITES ================= */
 
 .favorites{
 padding:40px;
@@ -295,8 +297,8 @@ width:200px;
 border-radius:8px;
 }
 
-/* CAR COMPARISON */
 
+/* ================= CAR COMPARISON ================= */
 
 .compare{
 padding:50px;
@@ -318,7 +320,8 @@ border-radius:10px;
 display:inline-block;
 }
 
-/* SPEED METER */
+
+/* ================= SPEED METER ================= */
 
 .speed-meter{
 padding:50px;
@@ -341,163 +344,8 @@ background:linear-gradient(90deg,red,orange);
 transition:1s;
 }
 
-#speedText{
-margin-top:10px;
-font-size:18px;
-}
 
-/* FOOTER */
-
-.footer{
-background:black;
-color:white;
-text-align:center;
-padding:40px 20px;
-}
-
-.footer-links{
-margin:20px 0;
-}
-
-.footer-links a{
-color:white;
-margin:0 15px;
-text-decoration:none;
-transition:0.3s;
-}
-
-.footer-links a:hover{
-color:red;
-}
-
-/* DARK MODE */
-
-body.dark-mode{
-background:#111;
-}
-
-body.dark-mode .car-card{
-background:#222;
-}
-/* LOADER */
-
-#loader{
-position:fixed;
-width:100%;
-height:100vh;
-background:black;
-display:flex;
-justify-content:center;
-align-items:center;
-color:red;
-font-size:40px;
-z-index:9999;
-}
-
-@media(max-width:768px){
-
-.navbar{
-flex-direction:column;
-gap:10px;
-}
-
-.hero{
-flex-direction:column;
-padding:60px 20px;
-}
-
-.hero img{
-width:90%;
-}
-
-.car-card{
-width:90%;
-}
-
-.modal-content{
-width:90%;
-}
-
-.meter{
-width:90%;
-}
-
-}
-.fav-counter{
-font-size:16px;
-color:white;
-}
-
-#toast{
-position:fixed;
-bottom:30px;
-right:30px;
-background:#ff2e2e;
-color:white;
-padding:12px 20px;
-border-radius:8px;
-display:none;
-z-index:9999;
-animation:fadeIn 0.5s;
-}
-
-@keyframes fadeIn{
-from{opacity:0; transform:translateY(20px);}
-to{opacity:1; transform:translateY(0);}
-}
-#particles-js{
-position:fixed;
-width:100%;
-height:100%;
-top:0;
-left:0;
-z-index:-1;
-background:black;
-}
-.gallery{
-padding:120px 20px;
-background:#000;
-}
-
-.carousel{
-position:relative;
-width:200px;
-margin:60px auto;
-transform-style:preserve-3d;
-animation:rotate 18s infinite linear;
-}
-
-.carousel img{
-position:absolute;
-width:160px;
-border-radius:12px;
-box-shadow:0 10px 25px rgba(0,0,0,0.7);
-}
-
-.carousel img:nth-child(1){
-transform:rotateY(0deg) translateZ(220px);
-}
-
-.carousel img:nth-child(2){
-transform:rotateY(120deg) translateZ(220px);
-}
-
-.carousel img:nth-child(3){
-transform:rotateY(240deg) translateZ(220px);
-}
-
-@keyframes rotate{
-
-from{
-transform:rotateY(0deg);
-}
-
-to{
-transform:rotateY(360deg);
-}
-
-}
-/* PRO GALLERY */
+/* ================= GALLERY ================= */
 
 .gallery{
 padding:100px 20px;
@@ -537,7 +385,9 @@ padding:10px 15px;
 border-radius:8px;
 cursor:pointer;
 }
-/* STATS SECTION */
+
+
+/* ================= STATS ================= */
 
 .stats{
 padding:80px 20px;
@@ -567,225 +417,92 @@ box-shadow:0 10px 30px rgba(255,0,0,0.5);
 .stat h3{
 font-size:40px;
 color:red;
-margin:0;
 }
 
 .stat p{
 margin-top:10px;
-
-}
-/* Mobile Responsive Fix */
-
-@media (max-width: 768px) {
-
-.hero {
-    width: 100%;
-    padding: 20px;
 }
 
-.hero img {
-    width: 100%;
-    height: auto;
-}
 
-.hero-content {
-    text-align: center;
-}
+/* ================= FOOTER ================= */
 
-.explore-btn {
-    width: 100%;
-}
-
-}
-/* ================= MOBILE PERFECT FIX ================= */
-
-@media (max-width:768px){
-
-body{
-overflow-x:hidden;
-}
-
-/* NAVBAR */
-
-.navbar{
-flex-direction:column;
-gap:10px;
-padding:15px 20px;
-}
-
-.nav-links{
-flex-wrap:wrap;
-justify-content:center;
-}
-
-/* HERO */
-
-.hero{
-flex-direction:column;
-gap:30px;
+.footer{
+background:black;
 padding:40px 20px;
-text-align:center;
 }
 
-.hero img{
+.footer-links{
+margin:20px 0;
+}
+
+.footer-links a{
+color:white;
+margin:0 15px;
+text-decoration:none;
+}
+
+.footer-links a:hover{
+color:red;
+}
+
+
+/* ================= LOADER ================= */
+
+#loader{
+position:fixed;
 width:100%;
-max-width:320px;
-height:auto;
-}
-
-.hero-content h2{
-font-size:32px;
-}
-
-.hero-buttons{
-position:static;
-transform:none;
-margin-top:20px;
-}
-
-/* SEARCH + FEATURED */
-
-.top-bar{
-flex-direction:column;
-gap:15px;
-text-align:center;
-}
-
-/* CAR CARDS */
-
-.car-card{
-width:90%;
-}
-
-/* MODAL */
-
-.modal-content{
-width:90%;
-}
-
-/* SPEED METER */
-
-.meter{
-width:90%;
-}
-
-/* GALLERY */
-
-.gallery-container{
-flex-direction:column;
-}
-
-.gallery-track img{
-width:160px;
-}
-
-}
-/* ===== FINAL MOBILE RESPONSIVE FIX ===== */
-
-@media screen and (max-width:768px){
-
-body{
-overflow-x:hidden;
-}
-
-/* NAVBAR */
-
-.navbar{
-flex-direction:column;
-align-items:center;
-padding:15px 20px;
-}
-
-.nav-links{
-flex-wrap:wrap;
-justify-content:center;
-gap:10px;
-}
-
-/* HERO SECTION */
-
-.hero{
+height:100vh;
+background:black;
 display:flex;
-flex-direction:column;
-align-items:center;
 justify-content:center;
-padding:40px 20px;
-gap:25px;
-text-align:center;
-}
-
-.hero img{
-width:90%;
-max-width:320px;
-height:auto;
-}
-
-.hero-content h2{
-font-size:30px;
-}
-
-.hero-buttons{
-position:relative;
-bottom:auto;
-left:auto;
-transform:none;
-margin-top:10px;
-}
-
-/* FEATURED SECTION */
-
-.top-bar{
-flex-direction:column;
-gap:15px;
-}
-
-/* CAR CARDS */
-
-.car-container{
-flex-direction:column;
 align-items:center;
+color:red;
+font-size:40px;
+z-index:9999;
 }
 
-.car-card{
-width:90%;
+
+/* ================= TOAST ================= */
+
+#toast{
+position:fixed;
+bottom:30px;
+right:30px;
+background:#ff2e2e;
+color:white;
+padding:12px 20px;
+border-radius:8px;
+display:none;
+z-index:9999;
+animation:fadeIn 0.5s;
 }
 
-/* MODAL */
-
-.modal-content{
-width:95%;
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
 }
 
-/* SPEED METER */
 
-.meter{
-width:90%;
+/* ================= PARTICLES ================= */
+
+#particles-js{
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+z-index:-1;
+background:black;
 }
 
-/* GALLERY */
 
-.gallery-container{
-flex-direction:column;
-}
-
-.gallery-track{
-flex-wrap:wrap;
-justify-content:center;
-}
-
-.gallery-track img{
-width:140px;
-}
-
-}
-/* UNIVERSAL IMAGE FIX */
-
-img{
-max-width:100%;
-height:auto;
-display:block;
-}
-/* RATING SYSTEM */
+/* ================= RATING ================= */
 
 .rating{
 margin:10px 0;
@@ -802,4 +519,74 @@ transition:0.3s;
 opacity:1;
 color:gold;
 transform:scale(1.2);
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width:768px){
+
+.navbar{
+flex-direction:column;
+gap:10px;
+padding:15px 20px;
+}
+
+.nav-links{
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.hero{
+flex-direction:column;
+gap:30px;
+padding:40px 20px;
+text-align:center;
+}
+
+.hero img{
+width:90%;
+max-width:320px;
+}
+
+.hero-content h2{
+font-size:32px;
+}
+
+.hero-buttons{
+position:static;
+transform:none;
+margin-top:20px;
+}
+
+.top-bar{
+flex-direction:column;
+gap:15px;
+}
+
+.car-card{
+width:90%;
+}
+
+.modal-content{
+width:95%;
+}
+
+.meter{
+width:90%;
+}
+
+.gallery-container{
+flex-direction:column;
+}
+
+.gallery-track{
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.gallery-track img{
+width:140px;
+}
+
 }
