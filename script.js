@@ -525,7 +525,25 @@ if(stats.getBoundingClientRect().top < window.innerHeight - 100){
 animateValue("speedStat",0,420,2000);
 animateValue("powerStat",0,1600,2000);
 animateValue("accStat",0,2,2000);
+  function rateCar(star, rating){
+
+let stars = star.parentElement.children;
+
+for(let i=0;i<stars.length;i++){
+
+stars[i].classList.remove("active");
+
+if(i < rating){
+stars[i].classList.add("active");
+}
 
 }
+
+showToast("Rating Submitted ⭐");
+
+}
+
+}
+
 
 });
