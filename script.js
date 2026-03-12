@@ -1,86 +1,110 @@
-let cars = ["Ferrari", "Lamborghini", "Bugatti"];
-let currentIndex = 0;
-let autoSlide = null;
+/* ============================= */
+/* CAR DATA */
+/* ============================= */
 
-/* SHOW CAR DETAILS */
+let cars = [
+{
+name:"Ferrari",
+speed:"340 km/h",
+power:"950 HP",
+acc:"0-100 in 2.9 sec",
+img:"images/car1.jpg",
+desc:"Ferrari is one of the fastest supercars known for speed and luxury."
+},
+
+{
+name:"Lamborghini",
+speed:"350 km/h",
+power:"980 HP",
+acc:"0-100 in 2.8 sec",
+img:"images/car2.jpg",
+desc:"Lamborghini is famous for its aggressive design and insane power."
+},
+
+{
+name:"Bugatti",
+speed:"420 km/h",
+power:"1600 HP",
+acc:"0-100 in 2.4 sec",
+img:"images/car3.jpg",
+desc:"Bugatti is the king of speed and the fastest production car in the world."
+}
+];
+
+let currentCarIndex = 0;
+
+
+/* ============================= */
+/* MODAL SYSTEM */
+/* ============================= */
 
 function showDetails(carName){
 
-currentIndex = cars.indexOf(carName);
+for(let i=0;i<cars.length;i++){
 
-let details = "";
-let img = document.getElementById("modalImage");
-
-if(carName === "Ferrari"){
-details = "Top Speed: 340 km/h 🚗\nEngine: V8 Twin Turbo\n0-100 km/h: 2.9 seconds";
-img.src = "images/car1.jpg";
+if(cars[i].name === carName){
+currentCarIndex = i;
+break;
 }
-
-else if(carName === "Lamborghini"){
-details = "Top Speed: 350 km/h 🚗\nEngine: V12\n0-100 km/h: 2.8 seconds";
-img.src = "images/car2.jpg";
-}
-
-else if(carName === "Bugatti"){
-details = "Top Speed: 420 km/h 🚗\nEngine: W16\n0-100 km/h: 2.4 seconds";
-img.src = "images/car3.jpg";
-}
-
-document.getElementById("modalTitle").innerText = carName;
-document.getElementById("modalText").innerText = details;
-
-document.getElementById("carModal").style.display = "block";
-
-startAutoSlide();
 
 }
 
-/* AUTO SLIDE INSIDE MODAL */
+updateModal();
 
-function startAutoSlide(){
+document.getElementById("carModal").style.display="flex";
 
-clearInterval(autoSlide);
+}
 
-autoSlide = setInterval(function(){
-nextCar();
-},3000);
+function updateModal(){
+
+let car = cars[currentCarIndex];
+
+document.getElementById("modalTitle").innerText = car.name;
+
+document.getElementById("modalText").innerHTML =
+"Top Speed: " + car.speed + "<br>" +
+"Power: " + car.power + "<br>" +
+"Acceleration: " + car.acc + "<br><br>" +
+car.desc;
+
+document.getElementById("modalImage").src = car.img;
 
 }
 
 function nextCar(){
 
-currentIndex++;
+currentCarIndex++;
 
-if(currentIndex >= cars.length){
-currentIndex = 0;
+if(currentCarIndex >= cars.length){
+currentCarIndex = 0;
 }
 
-showDetails(cars[currentIndex]);
+updateModal();
 
 }
 
 function prevCar(){
 
-currentIndex--;
+currentCarIndex--;
 
-if(currentIndex < 0){
-currentIndex = cars.length - 1;
+if(currentCarIndex < 0){
+currentCarIndex = cars.length-1;
 }
 
-showDetails(cars[currentIndex]);
+updateModal();
 
 }
-
-/* CLOSE MODAL */
 
 function closeModal(){
 
-document.getElementById("carModal").style.display = "none";
-clearInterval(autoSlide);
+document.getElementById("carModal").style.display="none";
 
 }
 
+
+/* ============================= */
 /* DARK MODE */
+/* ============================= */
 
 function toggleMode(){
 
@@ -89,78 +113,36 @@ document.body.classList.toggle("dark-mode");
 let btn = document.getElementById("modeBtn");
 
 if(document.body.classList.contains("dark-mode")){
-btn.innerHTML = "☀️ Light Mode";
-}
-
-else{
-btn.innerHTML = "🌙 Dark Mode";
-}
-
-}
-
-/* KEYBOARD CONTROL */
-
-document.addEventListener("keydown", function(event){
-
-let modal = document.getElementById("carModal");
-
-if(event.key === "Escape"){
-closeModal();
-}
-
-if(modal.style.display === "block"){
-
-if(event.key === "ArrowRight"){
-nextCar();
-}
-
-if(event.key === "ArrowLeft"){
-prevCar();
+btn.innerHTML="☀️ Light Mode";
+}else{
+btn.innerHTML="🌙 Dark Mode";
 }
 
 }
 
-});
 
-/* SCROLL ANIMATION */
+/* ============================= */
+/* HERO SLIDER */
+/* ============================= */
 
-window.addEventListener("scroll", function(){
-
-let cards = document.querySelectorAll(".car-card");
-
-cards.forEach(function(card){
-
-let position = card.getBoundingClientRect().top;
-let screenHeight = window.innerHeight;
-
-if(position < screenHeight - 100){
-card.classList.add("show");
-}
-
-});
-
-});
-
-/* HERO IMAGE SLIDER */
-
-let heroImages = [
+let heroImages=[
 "images/car1.jpg",
 "images/car2.jpg",
 "images/car3.jpg"
 ];
 
-let heroIndex = 0;
+let heroIndex=0;
 
 function showHero(){
-document.getElementById("heroImage").src = heroImages[heroIndex];
+document.getElementById("heroImage").src=heroImages[heroIndex];
 }
 
 function nextHero(){
 
 heroIndex++;
 
-if(heroIndex >= heroImages.length){
-heroIndex = 0;
+if(heroIndex>=heroImages.length){
+heroIndex=0;
 }
 
 showHero();
@@ -171,105 +153,130 @@ function prevHero(){
 
 heroIndex--;
 
-if(heroIndex < 0){
-heroIndex = heroImages.length - 1;
+if(heroIndex<0){
+heroIndex=heroImages.length-1;
 }
 
 showHero();
 
 }
 
-/* AUTO HERO SLIDE */
-
 setInterval(nextHero,4000);
 
-/* SEARCH FUNCTION */
+
+/* ============================= */
+/* SEARCH */
+/* ============================= */
 
 function searchCar(){
 
-let input = document.getElementById("searchBox").value.toLowerCase();
-let cards = document.querySelectorAll(".car-card");
+let input=document.getElementById("searchBox").value.toLowerCase();
+
+let cards=document.querySelectorAll(".car-card");
 
 cards.forEach(function(card){
 
-let title = card.querySelector("h3").innerText.toLowerCase();
+let title=card.querySelector("h3").innerText.toLowerCase();
 
 if(title.includes(input)){
-card.style.display = "block";
-}
-
-else{
-card.style.display = "none";
+card.style.display="block";
+}else{
+card.style.display="none";
 }
 
 });
 
 }
 
+
+/* ============================= */
 /* LOADER */
+/* ============================= */
 
-window.addEventListener("load", function(){
+window.addEventListener("load",function(){
 
-let loader = document.getElementById("loader");
+let loader=document.getElementById("loader");
 
 setTimeout(function(){
-loader.style.display = "none";
+loader.style.display="none";
 },1000);
 
 });
 
+
+/* ============================= */
+/* SCROLL ANIMATION */
+/* ============================= */
+
+window.addEventListener("scroll",function(){
+
+let cards=document.querySelectorAll(".car-card");
+
+cards.forEach(function(card){
+
+let position=card.getBoundingClientRect().top;
+let screenHeight=window.innerHeight;
+
+if(position<screenHeight-100){
+card.classList.add("show");
+}
+
+});
+
+});
+
+
+/* ============================= */
 /* 3D TILT EFFECT */
+/* ============================= */
 
-let tiltCards = document.querySelectorAll(".car-card");
+let tiltCards=document.querySelectorAll(".car-card");
 
-tiltCards.forEach(card => {
+tiltCards.forEach(card=>{
 
-card.addEventListener("mousemove", (e) => {
+card.addEventListener("mousemove",(e)=>{
 
-let rect = card.getBoundingClientRect();
+let rect=card.getBoundingClientRect();
 
-let x = e.clientX - rect.left;
-let y = e.clientY - rect.top;
+let x=e.clientX-rect.left;
+let y=e.clientY-rect.top;
 
-let centerX = rect.width / 2;
-let centerY = rect.height / 2;
+let centerX=rect.width/2;
+let centerY=rect.height/2;
 
-let rotateX = -(y - centerY) / 10;
-let rotateY = (x - centerX) / 10;
+let rotateX=-(y-centerY)/10;
+let rotateY=(x-centerX)/10;
 
-card.style.transform =
-`rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
-
-});
-
-card.addEventListener("mouseleave", () => {
-
-card.style.transform =
-"rotateX(0) rotateY(0) scale(1)";
+card.style.transform=`rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
 
 });
 
+card.addEventListener("mouseleave",()=>{
+
+card.style.transform="rotateX(0) rotateY(0) scale(1)";
+
 });
 
-/* FAVORITES SYSTEM v2.1 */
+});
 
-let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+/* ============================= */
+/* FAVORITES */
+/* ============================= */
+
+let favorites=JSON.parse(localStorage.getItem("favorites"))||[];
 
 updateFavCount();
 
-window.addEventListener("load", function(){
+window.addEventListener("load",function(){
 
-let list = document.getElementById("favoriteList");
+let list=document.getElementById("favoriteList");
 
 favorites.forEach(function(car){
-
 addFavoriteToList(car);
-
 });
 
 });
-
-/* ADD FAVORITE */
 
 function addFavorite(car){
 
@@ -277,7 +284,7 @@ if(!favorites.includes(car)){
 
 favorites.push(car);
 
-localStorage.setItem("favorites", JSON.stringify(favorites));
+localStorage.setItem("favorites",JSON.stringify(favorites));
 
 addFavoriteToList(car);
 
@@ -285,97 +292,82 @@ updateFavCount();
 
 showToast();
 
-}
+}else{
 
-else{
 alert("Already in favorites!");
-}
 
 }
 
-/* ADD ITEM TO LIST */
+}
 
 function addFavoriteToList(car){
 
-let list = document.getElementById("favoriteList");
+let list=document.getElementById("favoriteList");
 
-let item = document.createElement("li");
+let item=document.createElement("li");
 
-item.innerHTML = car + 
-` <button onclick="removeFavorite('${car}')">❌</button>`;
+item.innerHTML=car+` <button onclick="removeFavorite('${car}')">❌</button>`;
 
 list.appendChild(item);
 
 }
 
-/* REMOVE FAVORITE */
-
 function removeFavorite(car){
 
-favorites = favorites.filter(f => f !== car);
+favorites=favorites.filter(f=>f!==car);
 
-localStorage.setItem("favorites", JSON.stringify(favorites));
+localStorage.setItem("favorites",JSON.stringify(favorites));
 
 location.reload();
 
 }
 
-/* FAVORITES COUNT */
-
 function updateFavCount(){
 
-let count = document.getElementById("favCount");
+let count=document.getElementById("favCount");
 
 if(count){
-count.innerText = favorites.length;
+count.innerText=favorites.length;
 }
 
 }
 
+
+/* ============================= */
 /* TOAST */
+/* ============================= */
 
 function showToast(){
 
-let toast = document.getElementById("toast");
+let toast=document.getElementById("toast");
 
-toast.style.display = "block";
+toast.style.display="block";
 
 setTimeout(function(){
-toast.style.display = "none";
+toast.style.display="none";
 },2000);
 
 }
 
+
+/* ============================= */
 /* CAR COMPARISON */
+/* ============================= */
 
 function compareCars(){
 
-let car1 = document.getElementById("car1").value;
-let car2 = document.getElementById("car2").value;
+let car1=document.getElementById("car1").value;
+let car2=document.getElementById("car2").value;
 
-let data = {
+let data={
 
-Ferrari:{
-speed:"340 km/h",
-engine:"V8 Twin Turbo",
-zero:"2.9 sec"
-},
-
-Lamborghini:{
-speed:"350 km/h",
-engine:"V12",
-zero:"2.8 sec"
-},
-
-Bugatti:{
-speed:"420 km/h",
-engine:"W16",
-zero:"2.4 sec"
-}
+Ferrari:{speed:"340 km/h",engine:"V8",zero:"2.9 sec"},
+Lamborghini:{speed:"350 km/h",engine:"V12",zero:"2.8 sec"},
+Bugatti:{speed:"420 km/h",engine:"W16",zero:"2.4 sec"}
 
 };
 
-let result = `
+let result=`
 <h3>Comparison Result</h3>
 <p><b>${car1}</b> vs <b>${car2}</b></p>
 <p>Top Speed: ${data[car1].speed} | ${data[car2].speed}</p>
@@ -383,167 +375,142 @@ let result = `
 <p>0-100 km/h: ${data[car1].zero} | ${data[car2].zero}</p>
 `;
 
-document.getElementById("compareResult").innerHTML = result;
+document.getElementById("compareResult").innerHTML=result;
 
 }
 
-/* SPEED METER */
 
-function showSpeed(){
+/* ============================= */
+/* GALLERY */
+/* ============================= */
 
-let car = document.getElementById("speedCar").value;
-
-let speeds = {
-Ferrari:340,
-Lamborghini:350,
-Bugatti:420
-};
-
-let speed = speeds[car];
-
-let percent = speed / 5;
-
-let fill = document.getElementById("speedFill");
-
-fill.style.width = percent + "%";
-
-document.getElementById("speedText").innerText =
-car + " Top Speed: " + speed + " km/h";
-
-}
-/* PARTICLES BACKGROUND */
-
-particlesJS("particles-js",{
-
-"particles":{
-
-"number":{
-"value":80
-},
-
-"color":{
-"value":"#ff0000"
-},
-
-"shape":{
-"type":"circle"
-},
-
-"opacity":{
-"value":0.5
-},
-
-"size":{
-"value":3
-},
-
-"line_linked":{
-"enable":true,
-"distance":150,
-"color":"#ff0000",
-"opacity":0.4,
-"width":1
-},
-
-"move":{
-"enable":true,
-"speed":2
-}
-
-},
-
-"interactivity":{
-"events":{
-"onhover":{
-"enable":true,
-"mode":"repulse"
-}
-}
-}
-
-});
-/* PRO GALLERY */
-
-let galleryIndex = 0;
+let galleryIndex=0;
 
 function nextGallery(){
 
-let track = document.getElementById("galleryTrack");
+let track=document.getElementById("galleryTrack");
 
 galleryIndex++;
 
-if(galleryIndex > 2){
-galleryIndex = 0;
+if(galleryIndex>2){
+galleryIndex=0;
 }
 
-track.style.transform = "translateX(" + (-250 * galleryIndex) + "px)";
+track.style.transform="translateX("+(-250*galleryIndex)+"px)";
 
 }
 
 function prevGallery(){
 
-let track = document.getElementById("galleryTrack");
+let track=document.getElementById("galleryTrack");
 
 galleryIndex--;
 
-if(galleryIndex < 0){
-galleryIndex = 2;
+if(galleryIndex<0){
+galleryIndex=2;
 }
 
-track.style.transform = "translateX(" + (-250 * galleryIndex) + "px)";
+track.style.transform="translateX("+(-250*galleryIndex)+"px)";
 
 }
+
+
+/* ============================= */
 /* STATS COUNTER */
+/* ============================= */
 
-function animateValue(id, start, end, duration){
+function animateValue(id,start,end,duration){
 
-let obj = document.getElementById(id);
-let range = end - start;
-let current = start;
-let increment = end > start ? 1 : -1;
-let stepTime = Math.abs(Math.floor(duration / range));
+let obj=document.getElementById(id);
+let range=end-start;
+let current=start;
+let increment=end>start?1:-1;
+let stepTime=Math.abs(Math.floor(duration/range));
 
-let timer = setInterval(function(){
+let timer=setInterval(function(){
 
-current += increment;
-obj.innerText = current;
+current+=increment;
 
-if(current == end){
+obj.innerText=current;
+
+if(current==end){
 clearInterval(timer);
 }
 
-}, stepTime);
+},stepTime);
 
 }
 
-window.addEventListener("scroll", function(){
+window.addEventListener("scroll",function(){
 
-let stats = document.querySelector(".stats");
+let stats=document.querySelector(".stats");
 
-if(stats.getBoundingClientRect().top < window.innerHeight - 100){
+if(stats.getBoundingClientRect().top<window.innerHeight-100){
 
 animateValue("speedStat",0,420,2000);
 animateValue("powerStat",0,1600,2000);
 animateValue("accStat",0,2,2000);
-  function rateCar(star, rating){
-
-let stars = star.parentElement.children;
-
-for(let i=0;i<stars.length;i++){
-
-stars[i].classList.remove("active");
-
-if(i < rating){
-stars[i].classList.add("active");
-}
 
 }
-
-showToast("Rating Submitted ⭐");
-
-}
-
-}
-
 
 });
+
+
+/* ============================= */
+/* PARTICLES */
+/* ============================= */
+
+particlesJS("particles-js",{
+
+particles:{
+number:{value:80},
+color:{value:"#ff0000"},
+shape:{type:"circle"},
+opacity:{value:0.5},
+size:{value:3},
+line_linked:{
+enable:true,
+distance:150,
+color:"#ff0000",
+opacity:0.4,
+width:1
+},
+move:{
+enable:true,
+speed:2
+}
+},
+
+interactivity:{
+events:{
+onhover:{
+enable:true,
+mode:"repulse"
+}
+}
+}
+
+});
+// FAVORITES FUNCTION
+function addFavorite(car){
+console.log(car);
+}
+
+
+// ⭐ RATING SYSTEM
+
+function rateCar(star, rating) {
+
+let stars = star.parentElement.querySelectorAll("span");
+
+stars.forEach((s, index) => {
+
+if(index < rating){
+s.classList.add("active");
+}else{
+s.classList.remove("active");
+}
+
+});
+
+}
