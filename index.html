@@ -1,24 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>ShadowSpeed</title>
+
 <link rel="stylesheet" href="css/style.css">
+
 </head>
 
+
 <body>
+
 <div id="particles-js"></div>
+
 <!-- LOADER -->
+
 <div id="loader">
 ShadowSpeed
 </div>
 
-<!-- NAVBAR -->
+
+<!-- ================= NAVBAR ================= -->
+
 <nav class="navbar">
 
 <button onclick="toggleMode()" id="modeBtn">🌙 Dark Mode</button>
 
 <div class="logo">ShadowSpeed</div>
+
 <div class="fav-counter">
 ❤️ Favorites: <span id="favCount">0</span>
 </div>
@@ -32,135 +45,192 @@ ShadowSpeed
 
 </nav>
 
-<!-- HEADER -->
+
+<!-- ================= HEADER ================= -->
 
 <header>
+
 <h1>ShadowSpeed 🚗</h1>
+
 <p>Feel The Power. Drive The Future.</p>
+
 </header>
 
-<!-- HERO SECTION -->
+
+
+<!-- ================= HERO ================= -->
 
 <section class="hero">
 
-<img id="heroImage" src="images/car1.jpg">
+<img id="heroImage" src="images/car1.jpg" alt="Supercar">
 
 <div class="hero-buttons">
+
 <button onclick="prevHero()">⬅</button>
+
 <button onclick="nextHero()">➡</button>
+
 </div>
 
 <div class="hero-content">
+
 <h2>Unleash The Beast</h2>
+
 <p>Experience Speed Like Never Before</p>
+
 <button onclick="document.getElementById('cars').scrollIntoView({behavior:'smooth'})">
 Explore Cars
 </button>
+
 </div>
 
 </section>
 
-<!-- CARS SECTION -->
+
+
+<!-- ================= CARS ================= -->
 
 <section class="cars" id="cars">
 
 <div class="top-bar">
+
 <h2>Featured Cars</h2>
 
-<input type="text" id="searchBox" placeholder="Search car..." onkeyup="searchCar()">
+<input 
+type="text"
+id="searchBox"
+placeholder="Search car..."
+onkeyup="searchCar()"
+>
 
 </div>
 
+
 <div class="car-container">
+
 
 <!-- LAMBORGHINI -->
 
 <div class="car-card">
 
-<img src="images/car2.jpg" onclick="openImage(this.src)">
+<img src="images/car2.jpg" onclick="openImage(this.src)" alt="Lamborghini">
 
 <h3>Lamborghini</h3>
 
 <p>Top Speed: 350 km/h</p>
+
 <div class="rating">
+
 <span onclick="rateCar(this,1)">⭐</span>
 <span onclick="rateCar(this,2)">⭐</span>
 <span onclick="rateCar(this,3)">⭐</span>
 <span onclick="rateCar(this,4)">⭐</span>
 <span onclick="rateCar(this,5)">⭐</span>
-</div>
-<button onclick="showDetails('Lamborghini')">View Details</button>
-
-<button onclick="addFavorite('Lamborghini')">❤️ Favorite</button>
 
 </div>
+
+<button onclick="showDetails('Lamborghini')">
+View Details
+</button>
+
+<button onclick="addFavorite('Lamborghini')">
+❤️ Favorite
+</button>
+
+</div>
+
+
 
 <!-- FERRARI -->
 
 <div class="car-card">
 
-<img src="images/car1.jpg" onclick="openImage(this.src)">
+<img src="images/car1.jpg" onclick="openImage(this.src)" alt="Ferrari">
 
 <h3>Ferrari</h3>
 
 <p>Top Speed: 340 km/h</p>
- <div class="rating">
+
+<div class="rating">
+
 <span onclick="rateCar(this,1)">⭐</span>
 <span onclick="rateCar(this,2)">⭐</span>
 <span onclick="rateCar(this,3)">⭐</span>
 <span onclick="rateCar(this,4)">⭐</span>
 <span onclick="rateCar(this,5)">⭐</span>
-</div>
-
-<button onclick="showDetails('Ferrari')">View Details</button>
-
-<button onclick="addFavorite('Ferrari')">❤️ Favorite</button>
 
 </div>
+
+<button onclick="showDetails('Ferrari')">
+View Details
+</button>
+
+<button onclick="addFavorite('Ferrari')">
+❤️ Favorite
+</button>
+
+</div>
+
+
 
 <!-- BUGATTI -->
 
 <div class="car-card">
 
-<img src="images/car3.jpg" onclick="openImage(this.src)">
+<img src="images/car3.jpg" onclick="openImage(this.src)" alt="Bugatti">
 
 <h3>Bugatti</h3>
 
 <p>Top Speed: 420 km/h</p>
- <div class="rating">
+
+<div class="rating">
+
 <span onclick="rateCar(this,1)">⭐</span>
 <span onclick="rateCar(this,2)">⭐</span>
 <span onclick="rateCar(this,3)">⭐</span>
 <span onclick="rateCar(this,4)">⭐</span>
 <span onclick="rateCar(this,5)">⭐</span>
-</div>
-
-<button onclick="showDetails('Bugatti')">View Details</button>
-
-<button onclick="addFavorite('Bugatti')">❤️ Favorite</button>
 
 </div>
+
+<button onclick="showDetails('Bugatti')">
+View Details
+</button>
+
+<button onclick="addFavorite('Bugatti')">
+❤️ Favorite
+</button>
+
+</div>
+
 
 </div>
 
 </section>
 
-<!-- CAR COMPARISON -->
+
+
+<!-- ================= CAR COMPARISON ================= -->
 
 <section class="compare">
 
 <h2>⚡ Compare Supercars</h2>
 
 <select id="car1">
+
 <option value="Ferrari">Ferrari</option>
 <option value="Lamborghini">Lamborghini</option>
 <option value="Bugatti">Bugatti</option>
+
 </select>
 
+
 <select id="car2">
+
 <option value="Ferrari">Ferrari</option>
 <option value="Lamborghini">Lamborghini</option>
 <option value="Bugatti">Bugatti</option>
+
 </select>
 
 <br><br>
@@ -171,28 +241,73 @@ Explore Cars
 
 </section>
 
-<!-- FAVORITES -->
- <section class="gallery">
+
+
+<!-- ================= GALLERY ================= -->
+
+<section class="gallery">
 
 <h2>🏎 Supercar Gallery</h2>
 
 <div class="gallery-container">
 
-<button class="gallery-btn left" onclick="prevGallery()">⬅</button>
+<button class="gallery-btn" onclick="prevGallery()">⬅</button>
 
 <div class="gallery-track" id="galleryTrack">
 
-<img src="images/car1.jpg">
-<img src="images/car2.jpg">
-<img src="images/car3.jpg">
+<img src="images/car1.jpg" alt="Car">
+<img src="images/car2.jpg" alt="Car">
+<img src="images/car3.jpg" alt="Car">
 
 </div>
 
-<button class="gallery-btn right" onclick="nextGallery()">➡</button>
+<button class="gallery-btn" onclick="nextGallery()">➡</button>
 
 </div>
 
 </section>
+
+
+
+<!-- ================= STATS ================= -->
+
+<section class="stats">
+
+<h2>🚗 Supercar Performance</h2>
+
+<div class="stats-container">
+
+<div class="stat">
+
+<h3 id="speedStat">0</h3>
+
+<p>Top Speed (km/h)</p>
+
+</div>
+
+<div class="stat">
+
+<h3 id="powerStat">0</h3>
+
+<p>Horsepower</p>
+
+</div>
+
+<div class="stat">
+
+<h3 id="accStat">0</h3>
+
+<p>0-100 km/h (sec)</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= FAVORITES ================= -->
 
 <section class="favorites">
 
@@ -202,19 +317,23 @@ Explore Cars
 
 </section>
 
-<!-- MODAL -->
+
+
+<!-- ================= MODAL ================= -->
 
 <div id="carModal" class="modal">
 
 <div class="modal-content">
 
-<span class="close-btn" onclick="closeModal()">&times;</span>
+<span class="close-btn" onclick="closeModal()">
+&times;
+</span>
 
 <h2 id="modalTitle"></h2>
 
 <p id="modalText"></p>
 
-<img id="modalImage">
+<img id="modalImage" alt="Car">
 
 <br><br>
 
@@ -226,13 +345,19 @@ Explore Cars
 
 </div>
 
-<!-- IMAGE VIEWER -->
+
+
+<!-- ================= IMAGE VIEWER ================= -->
 
 <div id="imageViewer" onclick="closeImage()">
-<img id="fullImage">
+
+<img id="fullImage" alt="Full Car Image">
+
 </div>
 
-<!-- FOOTER -->
+
+
+<!-- ================= FOOTER ================= -->
 
 <footer class="footer">
 
@@ -243,22 +368,33 @@ Explore Cars
 <div class="footer-links">
 
 <a href="#">Home</a>
-
 <a href="#cars">Cars</a>
-
 <a href="#">Contact</a>
 
 </div>
 
-<p class="copyright">
+<p>
 © 2026 ShadowSpeed. All Rights Reserved.
 </p>
 
 </footer>
-<div id="toast">Added to Favorites ❤️</div>
-<script src="script.js"></script>
+
+
+
+<!-- TOAST -->
+
+<div id="toast">
+Added to Favorites ❤️
+</div>
+
+
+
+<!-- SCRIPTS -->
+
 <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+
+<script src="script.js"></script>
+
 </body>
+
 </html>
-
-
