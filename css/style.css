@@ -1,3 +1,6 @@
+html{
+scroll-behavior:smooth;
+}
 /* ================= GLOBAL ================= */
 
 *{
@@ -90,7 +93,7 @@ display:flex;
 align-items:center;
 justify-content:center;
 gap:60px;
-padding:80px 60px;
+padding:80px 40px;
 background:linear-gradient(to right, black, darkred);
 position:relative;
 flex-wrap:wrap;
@@ -103,7 +106,7 @@ box-shadow:0 15px 40px rgba(0,0,0,0.7);
 }
 
 .hero-content{
-animation:fadeSlide 1.5s ease;
+animation:fadeSlide 1.2s ease;
 }
 
 .hero-content h2{
@@ -138,7 +141,7 @@ transform:translateY(0);
 /* ================= CARS ================= */
 
 .cars{
-padding:40px;
+padding:60px 20px;
 }
 
 .top-bar{
@@ -149,6 +152,7 @@ max-width:1000px;
 margin:auto;
 margin-bottom:40px;
 flex-wrap:wrap;
+gap:10px;
 }
 
 #searchBox{
@@ -160,10 +164,12 @@ width:220px;
 }
 
 .car-container{
-display:flex;
-justify-content:center;
-gap:25px;
-flex-wrap:wrap;
+display:grid;
+grid-template-columns:repeat(3, 1fr);
+gap:30px;
+max-width:900px;
+margin:auto;
+padding:40px;
 }
 
 
@@ -216,14 +222,16 @@ height:100%;
 background:rgba(0,0,0,0.7);
 backdrop-filter:blur(8px);
 z-index:1000;
+justify-content:center;
+align-items:center;
 }
 
 .modal-content{
 background:white;
 color:black;
-margin:10% auto;
-padding:20px;
+padding:25px;
 width:60%;
+max-width:600px;
 border-radius:12px;
 text-align:center;
 animation:popup 0.4s ease;
@@ -259,28 +267,31 @@ opacity:1;
 
 /* ================= IMAGE VIEWER ================= */
 
+
 #imageViewer{
 position:fixed;
 top:0;
 left:0;
 width:100%;
-height:100vh;
+height:100%;
 background:rgba(0,0,0,0.9);
 display:none;
-justify-content:center;
 align-items:center;
+justify-content:center;
+z-index:9999;
 }
 
 #imageViewer img{
-max-width:80%;
-max-height:80%;
+max-width:90%;
+max-height:90%;
+border-radius:10px;
 }
 
 
 /* ================= FAVORITES ================= */
 
 .favorites{
-padding:40px;
+padding:50px 20px;
 background:#111;
 }
 
@@ -301,7 +312,7 @@ border-radius:8px;
 /* ================= CAR COMPARISON ================= */
 
 .compare{
-padding:50px;
+padding:60px 20px;
 background:#111;
 }
 
@@ -321,34 +332,10 @@ display:inline-block;
 }
 
 
-/* ================= SPEED METER ================= */
-
-.speed-meter{
-padding:50px;
-background:#000;
-}
-
-.meter{
-width:400px;
-height:30px;
-background:#222;
-border-radius:20px;
-margin:20px auto;
-overflow:hidden;
-}
-
-#speedFill{
-height:100%;
-width:0;
-background:linear-gradient(90deg,red,orange);
-transition:1s;
-}
-
-
 /* ================= GALLERY ================= */
 
 .gallery{
-padding:100px 20px;
+padding:80px 20px;
 background:#000;
 }
 
@@ -357,6 +344,7 @@ display:flex;
 align-items:center;
 justify-content:center;
 gap:20px;
+flex-wrap:wrap;
 }
 
 .gallery-track{
@@ -572,10 +560,6 @@ width:90%;
 width:95%;
 }
 
-.meter{
-width:90%;
-}
-
 .gallery-container{
 flex-direction:column;
 }
@@ -589,4 +573,170 @@ justify-content:center;
 width:140px;
 }
 
+}
+.nav-links a.active{
+color:red;
+font-weight:bold;
+}
+/* ENGINE START SHAKE */
+
+@keyframes engineShake {
+
+0% { transform: translate(0); }
+
+25% { transform: translate(-3px,3px); }
+
+50% { transform: translate(3px,-3px); }
+
+75% { transform: translate(-3px,3px); }
+
+100% { transform: translate(0); }
+
+}
+
+.engine-start{
+
+animation: engineShake 0.5s ease-in-out 3;
+
+}
+
+/* ============================= */
+/* 3D CAR CARD HOVER EFFECT */
+/* ============================= */
+
+.car-card{
+
+transition:0.4s;
+transform-style:preserve-3d;
+perspective:1000px;
+
+}
+
+.car-card:hover{
+
+transform:rotateY(8deg) rotateX(8deg) scale(1.05);
+box-shadow:0 25px 50px rgba(0,0,0,0.5);
+
+}
+
+.car-card img{
+
+transition:0.4s;
+
+}
+
+.car-card:hover img{
+
+transform:scale(1.1);
+
+}
+/* ================= SUPER CAR GLOW ================= */
+
+.car-card{
+position:relative;
+overflow:hidden;
+}
+
+.car-card::before{
+content:"";
+position:absolute;
+top:-50%;
+left:-50%;
+width:200%;
+height:200%;
+background:linear-gradient(
+120deg,
+transparent,
+rgba(255,0,0,0.6),
+transparent
+);
+transform:rotate(25deg);
+opacity:0;
+transition:0.6s;
+}
+
+.car-card:hover::before{
+opacity:1;
+animation:glowMove 1.5s linear infinite;
+}
+
+@keyframes glowMove{
+
+0%{
+transform:translateX(-100%) rotate(25deg);
+}
+
+100%{
+transform:translateX(100%) rotate(25deg);
+}
+
+}
+/* SPEED METER */
+
+.speed-meter{
+padding:60px 20px;
+background:#000;
+text-align:center;
+}
+
+.meter{
+width:300px;
+height:20px;
+background:#222;
+border-radius:20px;
+margin:20px auto;
+overflow:hidden;
+}
+
+#speedFill{
+height:100%;
+width:0%;
+background:linear-gradient(90deg, red, orange);
+transition:0.3s;
+}
+
+#speedText{
+font-size:28px;
+color:red;
+}
+.filter-buttons{
+margin-top:20px;
+}
+
+.filter-buttons button{
+margin:5px;
+background:#111;
+border:1px solid red;
+}
+
+.filter-buttons button:hover{
+background:red;
+}
+/* ================= SECRET SHADOW MODE ================= */
+
+.shadow-mode{
+background:black;
+color:#ff0000;
+transition:0.5s;
+}
+
+.shadow-mode .navbar{
+background:black;
+border-bottom:1px solid red;
+}
+
+.shadow-mode .car-card{
+background:#000;
+box-shadow:0 0 20px red;
+}
+
+.shadow-mode button{
+background:black;
+border:1px solid red;
+color:red;
+}
+
+.shadow-mode button:hover{
+background:red;
+color:black;
 }
