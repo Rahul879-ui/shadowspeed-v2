@@ -3,6 +3,7 @@
 /* ============================= */
 
 let cars = [
+
 {
 name:"Ferrari",
 speed:"340 km/h",
@@ -27,8 +28,72 @@ speed:"420 km/h",
 power:"1600 HP",
 acc:"0-100 in 2.4 sec",
 img:"images/car3.jpg",
-desc:"Bugatti is the king of speed and the fastest production car in the world."
+desc:"Bugatti is the king of speed and the fastest production car."
+},
+
+{
+name:"McLaren",
+speed:"330 km/h",
+power:"903 HP",
+acc:"0-100 in 2.7 sec",
+img:"images/car4.jpg",
+desc:"McLaren combines lightweight engineering with extreme performance."
+},
+
+{
+name:"Porsche",
+speed:"330 km/h",
+power:"750 HP",
+acc:"0-100 in 2.6 sec",
+img:"images/car5.jpg",
+desc:"Porsche is known for precision engineering and iconic design."
+},
+
+{
+name:"Koenigsegg",
+speed:"480 km/h",
+power:"1700 HP",
+acc:"0-100 in 2.5 sec",
+img:"images/car6.jpg",
+desc:"Koenigsegg builds some of the most advanced hypercars in the world."
+},
+
+{
+name:"Pagani",
+speed:"370 km/h",
+power:"800 HP",
+acc:"0-100 in 2.8 sec",
+img:"images/car7.jpg",
+desc:"Pagani cars are famous for art-like design and insane engineering."
+},
+
+{
+name:"Aston Martin",
+speed:"340 km/h",
+power:"715 HP",
+acc:"0-100 in 3.2 sec",
+img:"images/car8.jpg",
+desc:"Aston Martin combines luxury with powerful grand touring performance."
+},
+
+{
+name:"Tesla Roadster",
+speed:"400 km/h",
+power:"1000 HP",
+acc:"0-100 in 1.9 sec",
+img:"images/car9.jpg",
+desc:"Tesla Roadster is an electric hypercar with unbelievable acceleration."
+},
+
+{
+name:"Nissan GT-R",
+speed:"315 km/h",
+power:"600 HP",
+acc:"0-100 in 2.9 sec",
+img:"images/car10.jpg",
+desc:"Nissan GT-R is known as Godzilla for its insane performance."
 }
+
 ];
 
 let currentCarIndex = 0;
@@ -227,40 +292,6 @@ card.classList.add("show");
 
 
 /* ============================= */
-/* 3D TILT EFFECT */
-/* ============================= */
-
-let tiltCards=document.querySelectorAll(".car-card");
-
-tiltCards.forEach(card=>{
-
-card.addEventListener("mousemove",(e)=>{
-
-let rect=card.getBoundingClientRect();
-
-let x=e.clientX-rect.left;
-let y=e.clientY-rect.top;
-
-let centerX=rect.width/2;
-let centerY=rect.height/2;
-
-let rotateX=-(y-centerY)/10;
-let rotateY=(x-centerX)/10;
-
-card.style.transform=`rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
-
-});
-
-card.addEventListener("mouseleave",()=>{
-
-card.style.transform="rotateX(0) rotateY(0) scale(1)";
-
-});
-
-});
-
-
-/* ============================= */
 /* FAVORITES */
 /* ============================= */
 
@@ -416,44 +447,24 @@ track.style.transform="translateX("+(-250*galleryIndex)+"px)";
 
 
 /* ============================= */
-/* STATS COUNTER */
+/* RATING */
 /* ============================= */
 
-function animateValue(id,start,end,duration){
+function rateCar(star, rating) {
 
-let obj=document.getElementById(id);
-let range=end-start;
-let current=start;
-let increment=end>start?1:-1;
-let stepTime=Math.abs(Math.floor(duration/range));
+let stars = star.parentElement.querySelectorAll("span");
 
-let timer=setInterval(function(){
+stars.forEach((s, index) => {
 
-current+=increment;
-
-obj.innerText=current;
-
-if(current==end){
-clearInterval(timer);
-}
-
-},stepTime);
-
-}
-
-window.addEventListener("scroll",function(){
-
-let stats=document.querySelector(".stats");
-
-if(stats.getBoundingClientRect().top<window.innerHeight-100){
-
-animateValue("speedStat",0,420,2000);
-animateValue("powerStat",0,1600,2000);
-animateValue("accStat",0,2,2000);
-
+if(index < rating){
+s.classList.add("active");
+}else{
+s.classList.remove("active");
 }
 
 });
+
+}
 
 
 /* ============================= */
@@ -491,26 +502,279 @@ mode:"repulse"
 }
 
 });
-// FAVORITES FUNCTION
-function addFavorite(car){
-console.log(car);
-}
 
 
-// ⭐ RATING SYSTEM
+/* ============================= */
+/* NAVBAR ACTIVE LINK */
+/* ============================= */
 
-function rateCar(star, rating) {
+let sections=document.querySelectorAll("section[id]");
+let navLinks=document.querySelectorAll(".nav-links a");
 
-let stars = star.parentElement.querySelectorAll("span");
+window.addEventListener("scroll",()=>{
 
-stars.forEach((s, index) => {
+let current="";
 
-if(index < rating){
-s.classList.add("active");
-}else{
-s.classList.remove("active");
+sections.forEach(section=>{
+
+let sectionTop=section.offsetTop-250;
+let sectionHeight=section.offsetHeight;
+
+if(window.scrollY>=sectionTop && window.scrollY<sectionTop+sectionHeight){
+current=section.getAttribute("id");
 }
 
 });
+
+navLinks.forEach(link=>{
+
+link.classList.remove("active");
+
+if(link.getAttribute("href").includes(current)){
+link.classList.add("active");
+}
+
+});
+
+});
+/* ============================= */
+/* ENGINE SOUND */
+/* ============================= */
+
+function playEngine(){
+
+let sound = document.getElementById("engineSound");
+
+sound.currentTime = 0;
+
+sound.play();
+
+/* CAR SHAKE */
+
+let cards = document.querySelectorAll(".car-card");
+
+cards.forEach(card=>{
+card.classList.add("engine-start");
+
+setTimeout(()=>{
+card.classList.remove("engine-start");
+},1500);
+
+});
+
+/* SPEED METER */
+
+let speed = document.getElementById("speedFill");
+
+if(speed){
+
+speed.style.width="100%";
+
+setTimeout(()=>{
+speed.style.width="0%";
+},2000);
+
+}
+
+}
+/* ============================= */
+/* STATS COUNTER */
+/* ============================= */
+
+let statsStarted = false;
+
+window.addEventListener("scroll", function(){
+
+let statsSection = document.querySelector(".stats");
+
+if(!statsSection) return;
+
+let position = statsSection.getBoundingClientRect().top;
+
+let screenHeight = window.innerHeight;
+
+if(position < screenHeight && !statsStarted){
+
+statsStarted = true;
+
+animateStat("speedStat",420);
+animateStat("powerStat",1600);
+animateStat("accStat",2.4);
+
+}
+
+});
+
+function animateStat(id,target){
+
+let element = document.getElementById(id);
+
+let count = 0;
+
+let step = target / 50;
+
+let interval = setInterval(function(){
+
+count += step;
+
+if(count >= target){
+
+element.innerText = target;
+
+clearInterval(interval);
+
+}else{
+
+element.innerText = Math.floor(count);
+
+}
+
+},40);
+
+}
+/* ============================= */
+/* IMAGE VIEWER */
+/* ============================= */
+
+function openImage(src){
+
+let viewer = document.getElementById("imageViewer");
+let img = document.getElementById("fullImage");
+
+img.src = src;
+
+viewer.style.display = "flex";
+
+}
+
+function closeImage(){
+
+document.getElementById("imageViewer").style.display = "none";
+
+}
+function playEngine(){
+
+let speed = 0;
+
+let meter = document.getElementById("speedFill");
+let text = document.getElementById("speedText");
+
+let engine = document.getElementById("engineSound");
+
+engine.play();
+
+let interval = setInterval(()=>{
+
+speed += 5;
+
+meter.style.width = speed/3 + "%";
+
+text.innerText = speed + " km/h";
+
+if(speed >= 300){
+clearInterval(interval);
+}
+
+},50);
+
+}
+function filterCars(type){
+
+let cars = document.querySelectorAll(".car-card");
+
+cars.forEach(car=>{
+
+if(type === "all"){
+car.style.display="block";
+}
+else if(car.classList.contains(type)){
+car.style.display="block";
+}
+else{
+car.style.display="none";
+}
+
+});
+
+}
+function filterCars(type){
+
+let cars = document.querySelectorAll(".car-card");
+
+cars.forEach(car=>{
+
+if(type === "all"){
+car.style.display="block";
+}
+else if(car.classList.contains(type)){
+car.style.display="block";
+}
+else{
+car.style.display="none";
+}
+
+});
+
+}
+/* SECRET SHADOW MODE */
+
+let secretCode = "";
+let shadowWord = "shadow";
+
+document.addEventListener("keydown", function(e){
+
+secretCode += e.key.toLowerCase();
+
+if(secretCode.includes(shadowWord)){
+
+document.body.classList.toggle("shadow-mode");
+
+showToast("⚡ Shadow Mode Activated");
+
+secretCode = "";
+
+}
+
+});
+function showToast(msg){
+
+let toast = document.getElementById("toast");
+
+toast.innerText = msg;
+
+toast.style.display = "block";
+
+setTimeout(()=>{
+toast.style.display="none";
+},2000);
+
+}
+/* ================= SPEED METER ================= */
+
+let speed = 0;
+
+function playEngine(){
+
+let audio = document.getElementById("engineSound");
+
+audio.currentTime = 0;
+
+audio.play();
+
+let interval = setInterval(()=>{
+
+speed += 10;
+
+if(speed > 420){
+clearInterval(interval);
+}
+
+let percent = speed / 4.2;
+
+document.getElementById("speedFill").style.width = percent + "%";
+
+document.getElementById("speedText").innerText = speed + " km/h";
+
+},100);
 
 }
