@@ -14,6 +14,7 @@
 
 
 <body>
+    <audio id="engineSound" src="engine.mp3"></audio>
 
 <div id="particles-js"></div>
 
@@ -90,6 +91,8 @@ Explore Cars
 
 <!-- ================= CARS ================= -->
 
+<!-- ================= CARS ================= -->
+
 <section class="cars" id="cars">
 
 <div class="top-bar">
@@ -105,109 +108,227 @@ onkeyup="searchCar()"
 
 </div>
 
+<div class="filter-buttons">
+
+<button onclick="filterCars('all')">All</button>
+
+<button onclick="filterCars('electric')">Electric</button>
+
+<button onclick="filterCars('hyper')">Hypercars</button>
+
+<button onclick="filterCars('fast')">400+ Speed</button>
+
+</div>
+
 
 <div class="car-container">
 
 
 <!-- LAMBORGHINI -->
 
-<div class="car-card">
-
-<img src="images/car2.jpg" onclick="openImage(this.src)" alt="Lamborghini">
-
+<div class="car-card hyper">
+<img src="images/car2.jpg" onclick="openImage(this.src)">
 <h3>Lamborghini</h3>
-
 <p>Top Speed: 350 km/h</p>
 
 <div class="rating">
-
 <span onclick="rateCar(this,1)">⭐</span>
 <span onclick="rateCar(this,2)">⭐</span>
 <span onclick="rateCar(this,3)">⭐</span>
 <span onclick="rateCar(this,4)">⭐</span>
 <span onclick="rateCar(this,5)">⭐</span>
-
 </div>
 
-<button onclick="showDetails('Lamborghini')">
-View Details
-</button>
-
-<button onclick="addFavorite('Lamborghini')">
-❤️ Favorite
-</button>
-
+<button onclick="showDetails('Lamborghini')">View Details</button>
+<button onclick="playEngine()">Start Engine 🔊</button>
+<button onclick="addFavorite('Lamborghini')">❤️ Favorite</button>
 </div>
-
 
 
 <!-- FERRARI -->
 
-<div class="car-card">
-
-<img src="images/car1.jpg" onclick="openImage(this.src)" alt="Ferrari">
-
+<div class="car-card hyper">
+<img src="images/car1.jpg" onclick="openImage(this.src)">
 <h3>Ferrari</h3>
-
 <p>Top Speed: 340 km/h</p>
 
 <div class="rating">
-
 <span onclick="rateCar(this,1)">⭐</span>
 <span onclick="rateCar(this,2)">⭐</span>
 <span onclick="rateCar(this,3)">⭐</span>
 <span onclick="rateCar(this,4)">⭐</span>
 <span onclick="rateCar(this,5)">⭐</span>
-
 </div>
 
-<button onclick="showDetails('Ferrari')">
-View Details
-</button>
-
-<button onclick="addFavorite('Ferrari')">
-❤️ Favorite
-</button>
-
+<button onclick="showDetails('Ferrari')">View Details</button>
+<button onclick="playEngine()">Start Engine 🔊</button>
+<button onclick="addFavorite('Ferrari')">❤️ Favorite</button>
 </div>
-
 
 
 <!-- BUGATTI -->
 
-<div class="car-card">
-
-<img src="images/car3.jpg" onclick="openImage(this.src)" alt="Bugatti">
-
+<div class="car-card hyper fast">
+<img src="images/car3.jpg" onclick="openImage(this.src)">
 <h3>Bugatti</h3>
-
 <p>Top Speed: 420 km/h</p>
 
 <div class="rating">
-
 <span onclick="rateCar(this,1)">⭐</span>
 <span onclick="rateCar(this,2)">⭐</span>
 <span onclick="rateCar(this,3)">⭐</span>
 <span onclick="rateCar(this,4)">⭐</span>
 <span onclick="rateCar(this,5)">⭐</span>
-
 </div>
 
-<button onclick="showDetails('Bugatti')">
-View Details
-</button>
-
-<button onclick="addFavorite('Bugatti')">
-❤️ Favorite
-</button>
-
+<button onclick="showDetails('Bugatti')">View Details</button>
+<button onclick="playEngine()">Start Engine 🔊</button>
+<button onclick="addFavorite('Bugatti')">❤️ Favorite</button>
 </div>
 
 
+<!-- MCLAREN -->
+
+<div class="car-card hyper">
+<img src="images/car4.jpg" onclick="openImage(this.src)">
+<h3>McLaren</h3>
+<p>Top Speed: 330 km/h</p>
+
+<div class="rating">
+<span onclick="rateCar(this,1)">⭐</span>
+<span onclick="rateCar(this,2)">⭐</span>
+<span onclick="rateCar(this,3)">⭐</span>
+<span onclick="rateCar(this,4)">⭐</span>
+<span onclick="rateCar(this,5)">⭐</span>
 </div>
 
+<button onclick="showDetails('McLaren')">View Details</button>
+<button onclick="addFavorite('McLaren')">❤️ Favorite</button>
+</div>
+
+
+<!-- PORSCHE -->
+
+<div class="car-card hyper">
+<img src="images/car5.jpg" onclick="openImage(this.src)">
+<h3>Porsche</h3>
+<p>Top Speed: 330 km/h</p>
+
+<div class="rating">
+<span onclick="rateCar(this,1)">⭐</span>
+<span onclick="rateCar(this,2)">⭐</span>
+<span onclick="rateCar(this,3)">⭐</span>
+<span onclick="rateCar(this,4)">⭐</span>
+<span onclick="rateCar(this,5)">⭐</span>
+</div>
+
+<button onclick="showDetails('Porsche')">View Details</button>
+<button onclick="addFavorite('Porsche')">❤️ Favorite</button>
+</div>
+
+
+<!-- KOENIGSEGG -->
+
+<div class="car-card hyper fast">
+<img src="images/car6.jpg" onclick="openImage(this.src)">
+<h3>Koenigsegg</h3>
+<p>Top Speed: 480 km/h</p>
+
+<div class="rating">
+<span onclick="rateCar(this,1)">⭐</span>
+<span onclick="rateCar(this,2)">⭐</span>
+<span onclick="rateCar(this,3)">⭐</span>
+<span onclick="rateCar(this,4)">⭐</span>
+<span onclick="rateCar(this,5)">⭐</span>
+</div>
+
+<button onclick="showDetails('Koenigsegg')">View Details</button>
+<button onclick="addFavorite('Koenigsegg')">❤️ Favorite</button>
+</div>
+
+
+<!-- PAGANI -->
+
+<div class="car-card hyper">
+<img src="images/car7.jpg" onclick="openImage(this.src)">
+<h3>Pagani</h3>
+<p>Top Speed: 370 km/h</p>
+
+<div class="rating">
+<span onclick="rateCar(this,1)">⭐</span>
+<span onclick="rateCar(this,2)">⭐</span>
+<span onclick="rateCar(this,3)">⭐</span>
+<span onclick="rateCar(this,4)">⭐</span>
+<span onclick="rateCar(this,5)">⭐</span>
+</div>
+
+<button onclick="showDetails('Pagani')">View Details</button>
+<button onclick="addFavorite('Pagani')">❤️ Favorite</button>
+</div>
+
+
+<!-- ASTON MARTIN -->
+
+<div class="car-card hyper">
+<img src="images/car8.jpg" onclick="openImage(this.src)">
+<h3>Aston Martin</h3>
+<p>Top Speed: 340 km/h</p>
+
+<div class="rating">
+<span onclick="rateCar(this,1)">⭐</span>
+<span onclick="rateCar(this,2)">⭐</span>
+<span onclick="rateCar(this,3)">⭐</span>
+<span onclick="rateCar(this,4)">⭐</span>
+<span onclick="rateCar(this,5)">⭐</span>
+</div>
+
+<button onclick="showDetails('Aston Martin')">View Details</button>
+<button onclick="addFavorite('Aston Martin')">❤️ Favorite</button>
+</div>
+
+
+<!-- TESLA -->
+
+<div class="car-card electric fast">
+<img src="images/car9.jpg" onclick="openImage(this.src)">
+<h3>Tesla Roadster</h3>
+<p>Top Speed: 400 km/h</p>
+
+<div class="rating">
+<span onclick="rateCar(this,1)">⭐</span>
+<span onclick="rateCar(this,2)">⭐</span>
+<span onclick="rateCar(this,3)">⭐</span>
+<span onclick="rateCar(this,4)">⭐</span>
+<span onclick="rateCar(this,5)">⭐</span>
+</div>
+
+<button onclick="showDetails('Tesla Roadster')">View Details</button>
+<button onclick="addFavorite('Tesla Roadster')">❤️ Favorite</button>
+</div>
+
+
+<!-- NISSAN -->
+
+<div class="car-card hyper">
+<img src="images/car10.jpg" onclick="openImage(this.src)">
+<h3>Nissan GT-R</h3>
+<p>Top Speed: 315 km/h</p>
+
+<div class="rating">
+<span onclick="rateCar(this,1)">⭐</span>
+<span onclick="rateCar(this,2)">⭐</span>
+<span onclick="rateCar(this,3)">⭐</span>
+<span onclick="rateCar(this,4)">⭐</span>
+<span onclick="rateCar(this,5)">⭐</span>
+</div>
+
+<button onclick="showDetails('Nissan GT-R')">View Details</button>
+<button onclick="addFavorite('Nissan GT-R')">❤️ Favorite</button>
+</div>
+
+
+</div>
 </section>
-
 
 
 <!-- ================= CAR COMPARISON ================= -->
@@ -302,6 +423,19 @@ View Details
 </div>
 
 </div>
+
+</section>
+
+
+<section class="speed-meter">
+
+<h2>⚡ Engine Speed</h2>
+
+<div class="meter">
+<div id="speedFill"></div>
+</div>
+
+<h3 id="speedText">0 km/h</h3>
 
 </section>
 
